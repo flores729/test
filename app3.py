@@ -16,6 +16,7 @@ st.title("🌞 Prophet Forecast with Preprocessed Sunspot Data")
 # ----------------------------------
 # TODO: 'sunspots_for_prophet.csv' 파일을 불러오고, 'ds' 컬럼을 datetime 형식으로 변환하세요.
 df = pd.read_csv("data/sunspots_for_prophet.csv")
+
 df["ds"] = pd.to_datetime(df["ds"])
 
 st.subheader("📄 데이터 미리보기")
@@ -29,7 +30,6 @@ model = Prophet(
     changepoint_prior_scale=0.05,
     seasonality_mode='additive'
 )
-
 model.add_seasonality(name='sunspot_cycle', period=11, fourier_order=5)
 model.fit(df)
 # ----------------------------------
@@ -62,6 +62,10 @@ st.subheader("📉 Custom Plot: Actual vs Predicted with Prediction Intervals")
 
 # TODO: 실제값, 예측값, 신뢰구간을 하나의 plot에 시각화하세요.
 fig3, ax = plt.subplots(figsize=(14, 6))
+ax.plot(df["ds"], df["y"], color="blue", label="Actual", marker="o")
+ax.plot(forecast["ds"], forecast["yhat"], color="red", label="Predicted", linestyle="--")
+ax.fill_between(forecast["ds"], forecast["yhat_lower"], forecast["yhat_upper"], color="pink", alpha=0.3)
+
 
 fig3 = model.plot(forecast)
 plt.title("Forecast Plot")
@@ -87,10 +91,10 @@ merged = pd.merge(
     how="inner"
 )
 
+merged["residual"] = merged["y"] - merged["yhat"]
 
 # TODO: residual 시계열을 시각화하세요.
-fig4, ax2 = plt.subplots(figsize=(14, 4))
-
+ig4, ax2 = plt.subplots(figsize=(14, 4))
 ax2.plot(merged["ds"], merged["residual"], color="purple", label="Residuals", marker="o", linestyle="-")
 ax2.axhline(0, color="black", linestyle="--", linewidth=1)
 # 힌트:
