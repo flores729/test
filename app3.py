@@ -30,6 +30,8 @@ model = Prophet(
     seasonality_mode='additive'
 )
 
+model.add_seasonality(name='sunspot_cycle', period=11, fourier_order=5)
+model.fit(df)
 # ----------------------------------
 # [3] 예측 수행
 # ----------------------------------
