@@ -69,7 +69,6 @@ ax.fill_between(forecast["ds"], forecast["yhat_lower"], forecast["yhat_upper"], 
 
 
 
-fig3 = model.plot(forecast)
 plt.title("Forecast Plot")
 plt.xlabel("Year")
 plt.ylabel("Sunspot Activity")
