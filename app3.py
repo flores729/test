@@ -80,8 +80,13 @@ st.pyplot(fig3)
 st.subheader("📉 Residual Analysis (예측 오차 분석)")
 
 # TODO: df와 forecast를 'ds' 기준으로 병합하여 residual 컬럼을 생성하세요.
-ax.plot(merged["ds"], merged["residual"], color="purple", label="Residuals", marker="o", linestyle="-")
-ax.axhline(0, color="black", linestyle="--", linewidth=1)
+merged = pd.merge(
+    df[["ds", "y"]],
+    forecast[["ds", "yhat", "yhat_lower", "yhat_upper"]],
+    on="ds",
+    how="inner"
+)
+
 
 # TODO: residual 시계열을 시각화하세요.
 fig4, ax2 = plt.subplots(figsize=(14, 4))
