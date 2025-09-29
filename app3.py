@@ -65,7 +65,6 @@ st.subheader("📉 Custom Plot: Actual vs Predicted with Prediction Intervals")
 fig3, ax = plt.subplots(figsize=(14, 6))
 ax.plot(df["ds"], df["y"], color="blue", label="Actual", marker="o")
 ax.plot(forecast["ds"], forecast["yhat"], color="red", label="Predicted", linestyle="--")
-ax.fill_between(forecast["ds"], forecast["yhat_lower"], forecast["yhat_upper"], color="pink", alpha=0.3)
 
 
 fig3 = model.plot(forecast)
