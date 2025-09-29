@@ -94,7 +94,7 @@ merged = pd.merge(
 merged["residual"] = merged["y"] - merged["yhat"]
 
 # TODO: residual 시계열을 시각화하세요.
-ig4, ax2 = plt.subplots(figsize=(14, 4))
+fig4, ax2 = plt.subplots(figsize=(14, 4))
 ax2.plot(merged["ds"], merged["residual"], color="purple", label="Residuals", marker="o", linestyle="-")
 ax2.axhline(0, color="black", linestyle="--", linewidth=1)
 # 힌트:
