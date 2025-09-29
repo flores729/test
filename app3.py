@@ -20,6 +20,7 @@ df = pd.read_csv("data/sunspots_for_prophet.csv")
 df["ds"] = pd.to_datetime(df["ds"])
 
 st.subheader("📄 데이터 미리보기")
+st.dataframe(df.head())
 
 # ----------------------------------
 # [2] Prophet 모델 정의 및 학습
@@ -108,4 +109,4 @@ st.pyplot(fig4)
 # ----------------------------------
 st.subheader("📌 Residual Summary Statistics")
 # TODO: merged["residual"].describe()를 출력하세요.
-print(merged["residual"].describe())
+st.dataframe(merged["residual"].describe().to_frame().T) 
