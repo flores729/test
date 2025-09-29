@@ -38,7 +38,7 @@ def plot_advanced_sunspot_visualizations(df, sunactivity_col='SUNACTIVITY'):
         density = gaussian_kde(data)
 
 
-        axs[0, 1].hist(data, bins=hist_bins, density=True, alpha=0.6, color='gray', label='Histogram')
+        axs[0, 1].hist(data, bins=30, density=True, alpha=0.6, color='gray', label='Histogram')
         axs[0, 1].plot(xs, density(xs), color='red', linewidth=2, label='Density')
     axs[0, 1].set_title("Distribution of Sunspot Activity")
     axs[0, 1].set_xlabel("Sunspot Count")
@@ -105,3 +105,4 @@ try:
 except Exception as e:
     st.error(f"오류가 발생했습니다: {e}")
     st.info("데이터 파일의 구조를 확인해주세요. 'data/sunspots.csv' 파일이 존재하고 'YEAR'와 'SUNACTIVITY' 컬럼이 있어야 합니다.")
+
